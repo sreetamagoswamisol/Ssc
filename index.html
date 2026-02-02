@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SS CREATION | Corporate Turnkey Interior Fit-Out Contractor</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Fonts: Cormorant for Editorial Serif, Plus Jakarta for Modern Sans -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Display:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Plus+Jakarta+Sans:wght@200;300;400;500;600&display=swap" rel="stylesheet">
+    <!-- GSAP for Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <!-- Lenis for Smooth Scroll -->
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@1.0.19/bundled/lenis.min.js"></script>
+    
+    <style>
+        :root {
+            --bg: #0e0e0e;
+            --surface: #161616;
+            --accent: #d4af37;
+            --text-dim: #999999;
+            --text-bright: #f0f0f0;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: var(--text-bright);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .serif { font-family: 'Cormorant Display', serif; }
+
+        /* Subtle Grain Texture Overlay */
+        .grain-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("https://grainy-gradients.vercel.app/noise.svg");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Custom Interactive Cursor */
+        #cursor {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: var(--accent);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 10000;
+            mix-blend-mode: difference;
+            transition: transform 0.15s ease-out;
+        }
+
+        /* Smooth Scroll Setup */
+        html.lenis { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto; }
+
+        /* Layout Elements */
+        .tagline {
+            letter-spacing: 0.4em;
+            font-size: 0.7rem;
+        }
+
+        .image-reveal-container {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .image-reveal-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--bg);
+            transform-origin: right;
+            z-index: 2;
+        }
+
+        /* Nav hover effect */
+        .nav-item::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0;
+            width: 0; height: 1px;
+            background: var(--accent);
+            transition: width 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+        .nav-item:hover::after { width: 100%; }
+
+        /* Horizontal Scroll for Process Section */
+        .horizontal-container {
+            display: flex;
+            width: fit-content;
+        }
+
+        .process-slide {
+            width: 85vw;
+            height: 60vh;
+            flex-shrink: 0;
+            padding-right: 15vw;
+        }
+
+        @media (max-width: 768px) {
+            .process-slide { width: 100vw; padding-right: 5vw; }
+        }
+    </style>
+</head>
+<body class="selection:bg-accent selection:text-black">
+
+    <div class="grain-overlay"></div>
+    <div id="cursor"></div>
+
+    <!-- Navigation Header -->
+    <header class="fixed top-0 left-0 w-full z-50 p-6 md:p-10 flex justify-between items-start">
+        <div class="flex flex-col group cursor-pointer">
+            <span class="tagline text-accent uppercase font-semibold mb-1">SS CREATION</span>
+            <span class="text-[9px] text-text-dim tracking-[0.3em] uppercase">Excellence Since 2001</span>
+        </div>
+        <nav class="hidden md:flex gap-10 text-[10px] tracking-[0.3em] uppercase font-light text-text-dim">
+            <a href="#about" class="nav-item relative hover:text-white transition-colors">Philosophy</a>
+            <a href="#process" class="nav-item relative hover:text-white transition-colors">Execution</a>
+            <a href="#projects" class="nav-item relative hover:text-white transition-colors">Portfolios</a>
+            <a href="#contact" class="nav-item relative hover:text-white transition-colors">Connect</a>
+        </nav>
+        <button class="md:hidden text-[10px] uppercase tracking-widest text-accent">Menu</button>
+    </header>
+
+    <!-- 01 Hero Section -->
+    <section class="relative h-screen w-full flex flex-col justify-center items-center px-6 overflow-hidden">
+        <div class="absolute inset-0 z-0 opacity-30">
+            <img src="https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&q=80&w=2000" class="w-full h-full object-cover scale-110 hero-img" alt="SS Creation Interior">
+        </div>
+        
+        <div class="relative z-10 text-center max-w-5xl">
+            <p class="tagline text-accent uppercase mb-10 reveal-up">End-to-End Turnkey Execution</p>
+            <h1 class="text-[14vw] md:text-[9vw] leading-[0.85] serif italic font-light reveal-stagger mb-12">
+                Sculpting <br> Commercial <br> Presence.
+            </h1>
+            <div class="mt-4 w-px h-20 bg-accent/40 mx-auto reveal-up"></div>
+        </div>
+
+        <div class="absolute bottom-10 w-full px-10 flex justify-between items-end text-[9px] uppercase tracking-[0.3em] text-text-dim reveal-up">
+            <div class="flex flex-col gap-2">
+                <span>25+ Years Strategy</span>
+                <span>Project Management</span>
+            </div>
+            <div class="text-right">
+                <span>Kolkata, India</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- 02 Philosophy & Intro -->
+    <section id="about" class="py-40 px-6 md:px-32">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-3xl md:text-6xl serif italic font-light mb-24 leading-[1.2] reveal-text">
+                SS Creation is a professionally managed <br class="hidden md:block">
+                Interior Construction & Commercial Fit-Out company <br class="hidden md:block">
+                transforming <span class="text-accent underline underline-offset-[12px] decoration-1">concepts into refined reality.</span>
+            </h2>
+            
+            <div class="grid md:grid-cols-2 gap-20 md:gap-32 items-center">
+                <div class="image-reveal-container aspect-[4/5] md:aspect-square">
+                    <img src="https://images.unsplash.com/photo-1600607687920-4e2a09cf159d?auto=format&fit=crop&q=80&w=1200" class="w-full h-full object-cover grayscale opacity-70" alt="Detail Work">
+                    <div class="image-reveal-overlay"></div>
+                </div>
+                <div class="space-y-12">
+                    <div class="reveal-up">
+                        <span class="text-accent text-[10px] uppercase tracking-widest mb-4 block">The Mission</span>
+                        <p class="text-text-dim font-light text-xl leading-relaxed">
+                            We help organizations execute their projects on time, within scope, and on budget. We focus on Quality, Timelines, and Compliance as our non-negotiable pillars.
+                        </p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-10 reveal-up pt-8 border-t border-white/5">
+                        <div>
+                            <span class="block text-4xl serif mb-2 italic">98%</span>
+                            <span class="text-[9px] uppercase tracking-widest text-text-dim">Scheduled Completion</span>
+                        </div>
+                        <div>
+                            <span class="block text-4xl serif mb-2 italic">100%</span>
+                            <span class="text-[9px] uppercase tracking-widest text-text-dim">Budget Adherence</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 03 Founder -->
+    <section class="py-40 bg-surface/30">
+        <div class="max-w-5xl mx-auto px-6 flex flex-col items-center text-center">
+            <div class="w-32 h-32 md:w-48 md:h-48 rounded-full overflow-hidden mb-12 grayscale reveal-up border border-white/10 p-2">
+                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=400" class="w-full h-full object-cover rounded-full" alt="Amit Jasu">
+            </div>
+            <span class="text-accent text-[10px] uppercase tracking-widest mb-4 reveal-up">The Founder</span>
+            <h3 class="text-5xl md:text-7xl serif italic font-light mb-8 reveal-up">Amit Jasu</h3>
+            <p class="text-text-dim font-light text-lg max-w-2xl leading-relaxed reveal-up">
+                With 25 years of experience in project management and strategic planning, Amit leads SS Creation with a focus on coordination, practical site knowledge, and a strong problem-solving approach.
+            </p>
+        </div>
+    </section>
+
+    <!-- 04 Horizontal Process Section -->
+    <section id="process" class="py-40 bg-surface overflow-hidden">
+        <div class="px-6 md:px-32 mb-20">
+            <span class="text-accent text-[10px] uppercase tracking-[0.4em] mb-4 block reveal-up">Our Approach</span>
+            <h2 class="text-6xl md:text-8xl serif italic font-light reveal-up">Execution.</h2>
+        </div>
+        
+        <div class="horizontal-scroll-section">
+            <div class="horizontal-container px-6 md:px-32">
+                <!-- Step 1 -->
+                <div class="process-slide">
+                    <div class="h-full border-l border-white/5 pl-8 md:pl-12 flex flex-col justify-between py-12">
+                        <span class="text-8xl serif italic text-white/5">01</span>
+                        <div>
+                            <h3 class="text-4xl serif mb-6 italic">Strategy & Scope</h3>
+                            <p class="text-text-dim text-lg font-light max-w-md">Market research, timeline development, and resource allocation. We define the road before we build it.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="process-slide">
+                    <div class="h-full border-l border-white/5 pl-8 md:pl-12 flex flex-col justify-between py-12">
+                        <span class="text-8xl serif italic text-white/5">02</span>
+                        <div>
+                            <h3 class="text-4xl serif mb-6 italic">Management</h3>
+                            <p class="text-text-dim text-lg font-light max-w-md">Progress tracking and task management. Our multi-trade expertise ensures seamless onsite coordination.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="process-slide">
+                    <div class="h-full border-l border-white/5 pl-8 md:pl-12 flex flex-col justify-between py-12">
+                        <span class="text-8xl serif italic text-white/5">03</span>
+                        <div>
+                            <h3 class="text-4xl serif mb-6 italic">Quality Control</h3>
+                            <p class="text-text-dim text-lg font-light max-w-md">Evaluation, stakeholder feedback, and lessons learned. We ensure every detail meets the benchmark.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 05 Featured Portfolios -->
+    <section id="projects" class="py-40 px-6 md:px-32">
+        <div class="flex flex-col md:flex-row justify-between items-end mb-32 gap-6">
+            <h2 class="text-6xl md:text-8xl serif italic font-light reveal-up">Projects.</h2>
+            <p class="text-text-dim text-[10px] uppercase tracking-widest max-w-xs reveal-up">Selected Commercial and Showroom Fit-outs</p>
+        </div>
+        
+        <div class="space-y-64">
+            <!-- Amway -->
+            <div class="grid md:grid-cols-12 gap-10 items-center project-item">
+                <div class="md:col-span-8 image-reveal-container">
+                    <img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&q=80&w=1600" class="w-full aspect-video object-cover" alt="Amway Project">
+                    <div class="image-reveal-overlay"></div>
+                </div>
+                <div class="md:col-span-4 reveal-up">
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-accent">5,500 Sqft • Design & Build</span>
+                    <h3 class="text-5xl serif italic mt-4 mb-6">Amway</h3>
+                    <p class="text-text-dim font-light leading-relaxed mb-6">Complete turnkey execution focusing on reception aesthetics and functional workspace layouts.</p>
+                </div>
+            </div>
+
+            <!-- Visteon -->
+            <div class="grid md:grid-cols-12 gap-10 items-center project-item flex-row-reverse">
+                <div class="md:col-span-4 reveal-up md:text-right">
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-accent">21,000 Sqft • Civil & Interior</span>
+                    <h3 class="text-5xl serif italic mt-4 mb-6">Visteon</h3>
+                    <p class="text-text-dim font-light leading-relaxed mb-6">Large-scale facility management including conference rooms, office pods, and civil works.</p>
+                </div>
+                <div class="md:col-span-8 image-reveal-container">
+                    <img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=1600" class="w-full aspect-video object-cover" alt="Visteon Project">
+                    <div class="image-reveal-overlay"></div>
+                </div>
+            </div>
+
+            <!-- OSL Prestige -->
+            <div class="grid md:grid-cols-12 gap-10 items-center project-item">
+                <div class="md:col-span-8 image-reveal-container">
+                    <img src="https://images.unsplash.com/photo-1552519507-da3b142c6e3d?auto=format&fit=crop&q=80&w=1600" class="w-full aspect-video object-cover" alt="BMW Showroom">
+                    <div class="image-reveal-overlay"></div>
+                </div>
+                <div class="md:col-span-4 reveal-up">
+                    <span class="text-[9px] uppercase tracking-[0.3em] text-accent">12,000 Sqft • Showroom</span>
+                    <h3 class="text-5xl serif italic mt-4 mb-6">OSL Prestige (BMW)</h3>
+                    <p class="text-text-dim font-light leading-relaxed mb-6">High-end automobile showroom interiors requiring precision finishes and luxury lighting.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Minor Projects Grid -->
+        <div class="mt-60 pt-32 border-t border-white/5">
+            <h4 class="text-[10px] uppercase tracking-[0.4em] mb-16 text-center text-text-dim reveal-up">Other Notable Engagements</h4>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center opacity-60">
+                <div class="reveal-up"><span class="block font-medium mb-2">OSL Future</span><span class="text-[9px] text-accent uppercase">Tata Motors</span></div>
+                <div class="reveal-up"><span class="block font-medium mb-2">Cordlife</span><span class="text-[9px] text-accent uppercase">Medical Fitout</span></div>
+                <div class="reveal-up"><span class="block font-medium mb-2">Incuspaze</span><span class="text-[9px] text-accent uppercase">Samsung Odisha</span></div>
+                <div class="reveal-up"><span class="block font-medium mb-2">Allcargo</span><span class="text-[9px] text-accent uppercase">Logistics Hub</span></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 06 Testimonials -->
+    <section class="py-40 bg-surface/20">
+        <div class="max-w-4xl mx-auto px-6">
+            <div class="space-y-32">
+                <div class="reveal-up">
+                    <p class="text-2xl md:text-4xl serif italic font-light leading-snug mb-10">
+                        "We express our gratitude to the top-quality work of SS Creation which allowed this project to be commissioned ahead of schedule."
+                    </p>
+                    <div class="flex items-center gap-6">
+                        <span class="w-10 h-px bg-accent"></span>
+                        <div>
+                            <span class="block text-sm uppercase tracking-widest">Mr. Sukanta Das</span>
+                            <span class="text-[10px] uppercase tracking-widest text-text-dim">Admin Head, Cordlife</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="reveal-up" style="transition-delay: 150ms;">
+                    <p class="text-2xl md:text-4xl serif italic font-light leading-snug mb-10">
+                        "Extremely helpful, receptive and great at their work. It has been a wonderful experience."
+                    </p>
+                    <div class="flex items-center gap-6">
+                        <span class="w-10 h-px bg-accent"></span>
+                        <div>
+                            <span class="block text-sm uppercase tracking-widest">Mr. Pattynayak</span>
+                            <span class="text-[10px] uppercase tracking-widest text-text-dim">Infrastructure Head, OSL Group</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 07 Footer & Contact -->
+    <footer id="contact" class="pt-60 pb-20 px-6 md:px-32 bg-[#050505]">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-20 md:gap-40 mb-40">
+                <div>
+                    <h2 class="text-6xl md:text-[10vw] serif italic font-light leading-none mb-12 reveal-text">Build <br> Better.</h2>
+                    <p class="text-text-dim font-light text-xl max-w-sm reveal-up">
+                        Let's discuss how SS Creation can help your business achieve its project goals.
+                    </p>
+                </div>
+                <div class="flex flex-col justify-end space-y-16">
+                    <div class="reveal-up">
+                        <span class="text-[9px] uppercase tracking-widest text-text-dim block mb-4">Inquiries</span>
+                        <a href="mailto:info@sscreation.co.in" class="text-3xl md:text-5xl serif italic hover:text-accent transition-all duration-500 block underline underline-offset-8">info@sscreation.co.in</a>
+                        <a href="tel:9831157971" class="text-3xl serif italic mt-6 block hover:text-accent transition-colors">+91 98311 57971</a>
+                    </div>
+                    <div class="reveal-up">
+                        <span class="text-[9px] uppercase tracking-widest text-text-dim block mb-4">Location</span>
+                        <p class="text-lg font-light">21 Camac Street, Bell House<br>9th Floor, Kolkata – 700016</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-[9px] uppercase tracking-[0.4em] text-text-dim">
+                <span>© 2026 SS Creation • Kolkata</span>
+                <span class="hidden md:block italic serif normal-case text-sm">Your Growth, Our Mission.</span>
+                <div class="flex gap-8">
+                    <span class="hover:text-accent cursor-pointer transition-colors">Instagram</span>
+                    <span class="hover:text-accent cursor-pointer transition-colors">Facebook</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Custom Magnetic Cursor
+        const cursor = document.getElementById('cursor');
+        document.addEventListener('mousemove', (e) => {
+            gsap.to(cursor, {
+                x: e.clientX,
+                y: e.clientY,
+                duration: 0.15,
+                ease: "power2.out"
+            });
+        });
+
+        // 2. Lenis Smooth Scroll
+        const lenis = new Lenis({
+            duration: 1.4,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            smoothWheel: true,
+            touchMultiplier: 2,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+        requestAnimationFrame(raf);
+
+        // 3. GSAP Logic
+        gsap.registerPlugin(ScrollTrigger);
+
+        // Hero Parallax Image
+        gsap.to(".hero-img", {
+            scrollTrigger: {
+                trigger: ".hero-img",
+                start: "top top",
+                end: "bottom top",
+                scrub: true
+            },
+            y: 150,
+            scale: 1.25
+        });
+
+        // Staggered Title Entry
+        gsap.from(".reveal-stagger", {
+            opacity: 0,
+            y: 70,
+            duration: 1.6,
+            ease: "expo.out",
+            delay: 0.3
+        });
+
+        // Fade-up Reveal for Components
+        document.querySelectorAll('.reveal-up').forEach(item => {
+            gsap.from(item, {
+                scrollTrigger: {
+                    trigger: item,
+                    start: "top 92%",
+                },
+                opacity: 0,
+                y: 40,
+                duration: 1.4,
+                ease: "power4.out"
+            });
+        });
+
+        // Image reveal curtain effect
+        document.querySelectorAll('.image-reveal-container').forEach(container => {
+            const overlay = container.querySelector('.image-reveal-overlay');
+            gsap.to(overlay, {
+                scrollTrigger: {
+                    trigger: container,
+                    start: "top 85%",
+                },
+                scaleX: 0,
+                duration: 1.8,
+                ease: "expo.inOut"
+            });
+        });
+
+        // Text subtle reveal
+        document.querySelectorAll('.reveal-text').forEach(text => {
+            gsap.from(text, {
+                scrollTrigger: {
+                    trigger: text,
+                    start: "top 88%",
+                },
+                opacity: 0.1,
+                y: 20,
+                duration: 1.5,
+                ease: "power2.out"
+            });
+        });
+
+        // Horizontal Process Scroll
+        let slides = gsap.utils.toArray(".process-slide");
+        gsap.to(slides, {
+            xPercent: -100 * (slides.length - 1),
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".horizontal-scroll-section",
+                pin: true,
+                scrub: 1.5,
+                end: () => "+=" + document.querySelector(".horizontal-container").offsetWidth
+            }
+        });
+
+        // Cursor scaling on links
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                gsap.to(cursor, { scale: 5, backgroundColor: "transparent", border: "1px solid var(--accent)", opacity: 0.5 });
+            });
+            el.addEventListener('mouseleave', () => {
+                gsap.to(cursor, { scale: 1, backgroundColor: "var(--accent)", border: "none", opacity: 1 });
+            });
+        });
+
+        // Lenis anchor scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                lenis.scrollTo(this.getAttribute('href'));
+            });
+        });
+    </script>
+</body>
+</html>
+
